@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'react-native-gesture-handler'
 import { View, Text, StyleSheet,} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import Tabs from './CustomBottomTabsNavigator'
+import Tabs from './CustomBottomTabsNavigator';
 import { AntDesign } from '@expo/vector-icons';
 
 AntDesign.loadFont();
