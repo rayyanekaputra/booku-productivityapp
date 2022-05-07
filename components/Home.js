@@ -5,7 +5,6 @@ import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import notesKamu from '../assets/data/notesKamuData';
 import tugasKamu from '../assets/data/tugasKamuData';
-import Settings from './Home/Settings';
 AntDesign.loadFont();
 
 export default function Home({navigation}) {

@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, Button} from 'react-native';
 import colors from '../assets/colors/colors';
-import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import tugasKamu from '../assets/data/tugasKamuData';
