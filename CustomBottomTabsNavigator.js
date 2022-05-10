@@ -7,11 +7,22 @@ import {HomeStackNavigator,
   InsightsStackNavigator} from './CustomStackNavigator'
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 //membentuk navbar
 const Tab = createBottomTabNavigator();
 
 export default function Tabs(){
+
+  //ini untuk sembunyi bottomnavbar kalau dalam screen tertentu (yang mana itu screen ada dalam sebuah stack)
+  const getTabBarStyle = (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+    let display = (routeName === 'Settings') ? 'none': 'flex';
+    return(
+      {display}
+    )
+  }
+
     const [loaded] = useFonts({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
@@ -29,16 +40,24 @@ export default function Tabs(){
         tabBarActiveTintColor: '#3333',
         tabBarInactiveTintColor: 'yellow',
       }}>
-        <Tab.Screen name='HomeTab' component={HomeStackNavigator} options = {{
-          tabBarIcon: ({focused}) => (
-            <View style = {styles.bottomNavbarItemWrapper}>
-              <AntDesign name="home" size={24} color="black" />
-              <Text style = {styles.bottomNavbarItemText}>Home</Text>
-            </View>
+        <Tab.Screen name='HomeTab' component={HomeStackNavigator} options = {
+        //   {
+        //   tabBarIcon: ({focused}) => (
+        //     <View style = {styles.bottomNavbarItemWrapper}>
+        //       <AntDesign name="home" size={24} color="black" />
+        //       <Text style = {styles.bottomNavbarItemText}>Home</Text>
+        //     </View>
   
-          ),
-        }}
-        />
+        //   ),
+        // }
+        ({route}) =>({tabBarStyle: getTabBarStyle(route), tabBarIcon: ()=> (
+        <View style = {styles.bottomNavbarItemWrapper}>
+        <AntDesign name="home" size={24} color="black" />
+        <Text style = {styles.bottomNavbarItemText}>Home</Text>
+        </View>
+        )})
+      }
+/>
         <Tab.Screen name='NotesTab' component={NotesStackNavigator} options = {{
           tabBarIcon: () => (
             <View style = {styles.bottomNavbarItemWrapper}>

@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, Button} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import colors from '../assets/colors/colors';
 import { AntDesign } from '@expo/vector-icons';
-import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetFlatList} from "@gorhom/bottom-sheet";
 import tugasKamu from '../assets/data/tugasKamuData';
 import {CalendarList} from 'react-native-calendars';
 
@@ -13,7 +13,7 @@ export default function Dates(){
     const sheetRef = useRef(null);
     const [isOpen, setIsOpen] = useState(true);
 
-    const snapPoints = useMemo(() => ["40%","90%"], []);
+    const snapPoints = useMemo(() => ["40%","85%"], []);
     const handleSnapPress = useCallback((index) => {
         sheetRef.current?.snapToIndex(index);
         setIsOpen(true);
