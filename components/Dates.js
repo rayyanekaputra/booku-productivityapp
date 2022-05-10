@@ -1,19 +1,19 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, Button} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import colors from '../assets/colors/colors';
-import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
-import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetFlatList} from "@gorhom/bottom-sheet";
 import tugasKamu from '../assets/data/tugasKamuData';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import {CalendarList} from 'react-native-calendars';
 
+
+AntDesign.loadFont();
 export default function Dates(){
-
     // hooks
     const sheetRef = useRef(null);
     const [isOpen, setIsOpen] = useState(true);
 
-    const snapPoints = useMemo(() => ["40%","90%"], []);
+    const snapPoints = useMemo(() => ["40%","85%"], []);
     const handleSnapPress = useCallback((index) => {
         sheetRef.current?.snapToIndex(index);
         setIsOpen(true);
@@ -48,19 +48,37 @@ export default function Dates(){
     };
 
     return(
-    <View style = {styles.container} >
-        <Calendar/>
-        <View style = {{
-            flex: 1,
-            backgroundColor: setIsOpen? 'black':'white',
-        }}>
-            <Text style = {{
-                fontSize: 64,
-                color: colors.mainAccent,
-            }}>
-                asdasdasd
-            </Text>
+    <View style = {styles.container}>
+        {/* header */}
+        <View style = {styles.headerWrapper}>
+        <Text style = {styles.textUtama}>Deadlines</Text>
+        <TouchableOpacity>
+            <AntDesign name="infocirlce" size={24} color= {colors.antiHitam} />
+        </TouchableOpacity>
+        
         </View>
+
+        {/* JANGAN LUPA RESTART SETELAH GANTI THEMENYA, NTAH KENAPA NDA NA LOAD KI PACKAGENYA */}
+        <CalendarList 
+        style = {styles.calendar} 
+        horizontal = {true}
+        pagingEnabled={true}
+        pastScrollRange={2}
+        // Max amount of months allowed to scroll to the future. Default = 50
+        futureScrollRange={3}
+        // Enable or disable scrolling of calendar list
+        
+        theme = {{
+            calendarBackground: colors.antiBackground,
+
+            textMonthFontSize: 24,
+            textMonthFontFamily: 'Montserrat-Bold',
+            
+            textDayFontFamily: 'Montserrat-Regular',
+            textWeekFontFamily: 'Montserrat-Bold',
+           
+
+        }}/>
         <BottomSheet 
                 style = {styles.tugasKamuWrapper}
                 ref={sheetRef}
@@ -88,6 +106,28 @@ const styles = StyleSheet.create({
         flex: 1,
         alignContent: 'center',
     },
+    calendar: {
+        paddingBottom: 256,
+    },
+
+
+    headerWrapper: {
+        paddingTop: 48,
+        padding: 24,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: colors.antiBackground,
+      },
+      textUtama: {
+        textAlign: 'left',
+        fontFamily: 'Montserrat-Bold',
+        fontSize: 28,
+        color: colors.antiHitam
+        
+      },
+
+
     tugaskamuWrapper:{ // INI KESELURUHAN TUGAS
         // padding: 24, kalau dikasih padding bisa na cut carouselnya
     },

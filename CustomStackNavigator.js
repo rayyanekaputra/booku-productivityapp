@@ -3,14 +3,12 @@
 //caranya bernavigasi dalam satu Stack dan diparentkan dengan Bottom Bar Nav
 
 import * as React from 'react';
-import { TouchableOpacity, StyleSheet} from 'react-native';
 import { createStackNavigator} from '@react-navigation/stack';
 import Dates from './components/Dates';
 import Home from './components/Home';
 import Settings from './components/Home/Settings';
 import Insights from './components/Insights';
-import Notes from './components/Notes';
-import colors from './assets/colors/colors';
+import Notes from './components/Notes'; 
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -40,6 +38,7 @@ export function HomeStackNavigator(){
             fontFamily: 'Montserrat-Bold',
             fontSize: 16,
           },
+          
         }}/>
     </Stack.Navigator>
   )
