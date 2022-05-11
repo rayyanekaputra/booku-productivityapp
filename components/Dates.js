@@ -150,10 +150,12 @@ const styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'left',
         marginBottom: 2,
+        color: colors.antiHitam,
     },
     textTugasIsi:{
         fontFamily: 'Montserrat-Light',
         fontSize: 8,
         textAlign: 'left',
+        color: colors.antiHitam,
     },
 })
