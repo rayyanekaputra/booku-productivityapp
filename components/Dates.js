@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 
 
     headerWrapper: {
-        paddingTop: 48,
+
         padding: 24,
         flexDirection: 'row',
         justifyContent: 'space-between',

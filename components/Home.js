@@ -33,7 +33,7 @@ export default function Home({navigation}) {
   };
 
   return (
-    
+  
     //Pake Scrollview spy bisa discroll vertikal layarnya
     <ScrollView style={styles.container} contentInsetAdjustmentBehavior = 'automatic' showsVerticalScrollIndicator = {false}>
   {/* header */}
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
       paddingTop: 24,
     },
     headerWrapper: {
-      paddingTop: 48,
+
       padding: 24,
       flexDirection: 'row',
       justifyContent: 'space-between',

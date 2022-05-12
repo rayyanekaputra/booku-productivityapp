@@ -8,7 +8,6 @@ import {
     BottomSheetModalProvider,
     BottomSheetBackdrop,
   } from '@gorhom/bottom-sheet';
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 AntDesign.loadFont();
 export default function Settings({route}){

@@ -24,7 +24,9 @@ export default function Notes({navigation}){
              {/* header */}
             <View style = {styles.headerWrapper}>
                 <Text style = {styles.textUtama}>Notes</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress ={()=>{
+          navigation.navigate('Editor')
+        }}>
                 <AntDesign name="plus" size={24} color= {colors.antiHitam} />
                 </TouchableOpacity>
             </View>
@@ -149,7 +151,6 @@ const styles = StyleSheet.create({
         
     },
     headerWrapper: {
-        paddingTop: 48,
         padding: 24,
         flexDirection: 'row',
         justifyContent: 'space-between',
