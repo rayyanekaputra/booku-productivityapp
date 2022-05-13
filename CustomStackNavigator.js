@@ -7,10 +7,12 @@ import { createStackNavigator} from '@react-navigation/stack';
 import Dates from './components/Dates';
 import Home from './components/Home';
 import Settings from './components/Home/Settings';
+import Editor from './components/Notes/Editor';
 import Insights from './components/Insights';
 import Notes from './components/Notes'; 
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
+import colors from './assets/colors/colors'
 
 
 const Stack = createStackNavigator();
@@ -38,6 +40,20 @@ export function HomeStackNavigator(){
             fontFamily: 'Montserrat-Bold',
             fontSize: 16,
           },
+          headerBackImage: () => (
+            <AntDesign name="back" size={24} color= {colors.antiHitam} />
+          ),
+         
+          headerRightContainerStyle: {
+            flex: 1,
+            marginRight: 24,
+       
+          },
+          headerLeftContainerStyle: {
+            flex: 1,
+            marginLeft: 12,
+          }
+
           
         }}/>
     </Stack.Navigator>
@@ -49,8 +65,25 @@ export function NotesStackNavigator(){
         <Stack.Screen name='Notes' component={Notes} options = {{
           headerShown: false,
         }}/>
-        <Stack.Screen name='Settings' component={Settings} options = {{
-
+        <Stack.Screen name='Editor' component={Editor} options = {{
+          headerTransparent: true,
+          headerTitle: ' ',
+          headerRight: () => (
+            <AntDesign name="setting" size={24} color= {colors.antiHitam} />
+          ),
+          headerBackImage: () => (
+            <AntDesign name="back" size={24} color= {colors.antiHitam} />
+          ),
+         
+          headerRightContainerStyle: {
+            flex: 1,
+            paddingRight: 24,
+       
+          },
+          headerLeftContainerStyle: {
+            flex: 1,
+            paddingLeft: 12,
+          }
         }}/>
       </Stack.Navigator>
     )

@@ -8,7 +8,6 @@ import {
     BottomSheetModalProvider,
     BottomSheetBackdrop,
   } from '@gorhom/bottom-sheet';
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 AntDesign.loadFont();
 export default function Settings({route}){
@@ -78,7 +77,7 @@ export default function Settings({route}){
                     </Text>
 
                     <TouchableOpacity style = {[styles.hubungkanButton,{
-                backgroundColor: isOpen? '#888686' : 'white'
+                backgroundColor: isOpen? '#888686' : colors.mainAccent
             }]}>
                         <Text style = {styles.buttonSmallTextwithIcon}> Hubungkan Akun</Text>
                         <AntDesign name="caretright" size={8} color= "white" />

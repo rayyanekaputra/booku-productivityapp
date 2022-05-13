@@ -26,14 +26,14 @@ export default function Home({navigation}) {
         styles.noteWrapper, {
           marginLeft: item.id == 1 ? 24 : 0, //jika id == 1, maka 20 else 0
         }]}>
-        <Text style = {styles.textNoteJudul}>{item.title}</Text>
-        <Text style = {styles.textNoteIsi}>{item.isi}</Text>
+        <Text style = {styles.textNoteJudul}>{item.judul}</Text>
+        <Text  numberOfLines={3} style = {styles.textNoteIsi}>{item.isi}</Text>
       </View>
     );
   };
 
   return (
-    
+  
     //Pake Scrollview spy bisa discroll vertikal layarnya
     <ScrollView style={styles.container} contentInsetAdjustmentBehavior = 'automatic' showsVerticalScrollIndicator = {false}>
   {/* header */}
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
       paddingTop: 24,
     },
     headerWrapper: {
-      paddingTop: 48,
+
       padding: 24,
       flexDirection: 'row',
       justifyContent: 'space-between',

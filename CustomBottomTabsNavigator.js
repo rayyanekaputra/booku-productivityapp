@@ -8,18 +8,25 @@ import {HomeStackNavigator,
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-
+import colors from './assets/colors/colors';
 //membentuk navbar
 const Tab = createBottomTabNavigator();
 
 export default function Tabs(){
 
   //ini untuk sembunyi bottomnavbar kalau dalam screen tertentu (yang mana itu screen ada dalam sebuah stack)
-  const getTabBarStyle = (route) => {  
+  const getTabBarStyleHome = (route) => {  
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
     let display = (routeName === 'Settings') ? 'none': 'flex';
     return(
       {display}
+    )
+  }
+  const getTabBarStyleNotes= (route) => {  
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Notes';
+    let display = (routeName === 'Editor') ? 'none': 'flex';
+    return(
+     { display}
     )
   }
 
@@ -41,36 +48,26 @@ export default function Tabs(){
         tabBarInactiveTintColor: 'yellow',
       }}>
         <Tab.Screen name='HomeTab' component={HomeStackNavigator} options = {
-        //   {
-        //   tabBarIcon: ({focused}) => (
-        //     <View style = {styles.bottomNavbarItemWrapper}>
-        //       <AntDesign name="home" size={24} color="black" />
-        //       <Text style = {styles.bottomNavbarItemText}>Home</Text>
-        //     </View>
-  
-        //   ),
-        // }
-        ({route}) =>({tabBarStyle: getTabBarStyle(route), tabBarIcon: ()=> (
+        ({route}) =>({tabBarStyle: getTabBarStyleHome(route), tabBarIcon: ()=> (
         <View style = {styles.bottomNavbarItemWrapper}>
-        <AntDesign name="home" size={24} color="black" />
+        <AntDesign name="home" size={24} color={colors.antiHitam} />
         <Text style = {styles.bottomNavbarItemText}>Home</Text>
         </View>
         )})
       }
 />
-        <Tab.Screen name='NotesTab' component={NotesStackNavigator} options = {{
-          tabBarIcon: () => (
-            <View style = {styles.bottomNavbarItemWrapper}>
-              <AntDesign name="copy1" size={24} color="black" />
-              <Text style = {styles.bottomNavbarItemText}>Notes</Text>
-            </View>
-  
-          ),
-        }}/>
+        <Tab.Screen name='NotesTab' component={NotesStackNavigator} options = {
+        ({route}) =>({tabBarStyle: getTabBarStyleNotes(route), tabBarIcon: ()=> (
+        <View style = {styles.bottomNavbarItemWrapper}>
+          <AntDesign name="copy1" size={24} color={colors.antiHitam} />
+          <Text style = {styles.bottomNavbarItemText}>Notes</Text>
+        </View>
+        )})
+      }/>
         <Tab.Screen name='DatesTab' component={DatesStackNavigator} options = {{
           tabBarIcon: () => (
             <View style = {styles.bottomNavbarItemWrapper}>
-              <AntDesign name="table" size={24} color="black" />
+              <AntDesign name="table" size={24} color={colors.antiHitam} />
               <Text style = {styles.bottomNavbarItemText}>Dates</Text>
             </View>
   
@@ -79,7 +76,7 @@ export default function Tabs(){
         <Tab.Screen name='InsightsTab' component={InsightsStackNavigator} options = {{
           tabBarIcon: () => (
             <View style = {styles.bottomNavbarItemWrapper}>
-              <AntDesign name="linechart" size={24} color="black" />
+              <AntDesign name="linechart" size={24} color={colors.antiHitam} />
               <Text style = {styles.bottomNavbarItemText}>Insights</Text>
             </View>
   
