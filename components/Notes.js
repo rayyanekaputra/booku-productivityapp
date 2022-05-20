@@ -1,13 +1,31 @@
-import * as React from 'react';
+import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import colors from '../assets/colors/colors';
 import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import notesKamu from '../assets/data/notesKamuData';
-import tugasKamu from '../assets/data/tugasKamuData';
+import CountDown from 'react-native-countdown-component';
 
 AntDesign.loadFont();
 export default function Notes({navigation}){
+  
+    //ini state2 yang terganti pada saat menggunakan timer
+
+    const [countIDBelajar, setCountIDBelajar] = useState('z');
+    const [isTimerRunningBelajar, setTimerRunningBelajar]= useState(false);
+    const [isPressedChangeTextBelajar, setPressedChangeTextBelajar] = useState('Mulai');
+    const [isCountUntillBelajar, setCountUntillBelajar] = useState(2);
+
+    const [countIDIstirahat, setCountIDIstirahat] = useState('a');
+    const [isTimerRunningIstirahat, setTimerRunningIstirahat]= useState(false);
+    const [isPressedChangeTextIstirahat, setPressedChangeTextIstirahat] = useState('Mulai');
+    const [isCountUntillIstirahat, setCountUntillIstirahat] = useState(2);
+
+
+  
+    
+   
+  
     //panggil fungsi useFonts untuk pake fonts custom dari expofonts
     const [loaded] = useFonts({
         'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
@@ -83,10 +101,22 @@ export default function Notes({navigation}){
                     justifyContent: 'space-between',
                     alignItems: 'center',
                 }}>
+
+                  {/* TOMBOL RESET */}
                     <Text style = {styles.subtextUtamaDalam} >
                         Dengan metode pomodoro
                     </Text>
-                    <TouchableOpacity style = {styles.buttonInside}>
+                    <TouchableOpacity style = {styles.buttonInside} onPress = {()=>{
+                      setCountIDBelajar('asdf'),
+                      setTimerRunningBelajar(false),
+                      setPressedChangeTextBelajar('Mulai'),
+                      setCountIDIstirahat('nbmb'),
+                      setTimerRunningIstirahat(false),
+                      setPressedChangeTextIstirahat('Mulai')
+                      
+
+
+                    }}>
                         <Text style = {styles.textButtonInside}>Reset Timer</Text>
                     </TouchableOpacity>
                                 
@@ -96,24 +126,86 @@ export default function Notes({navigation}){
                 </View>
                 {/*countdown utama*/}
                 <View style = {styles.countdownWrapper}>
-                    <Text style = {styles.textUtamaDalam} >
-                        30:00
-                    </Text>
-                    <TouchableOpacity style = {styles.buttonInside}>
-                        <Text style = {styles.textButtonInside}>Mulai</Text>
+                <CountDown
+                  id = {countIDBelajar}
+                  size={15}
+                  until={isCountUntillBelajar}
+                  onFinish={() => (alert('Finished'),setCountIDBelajar('xcvx'))}
+                  
+                  digitStyle = {{
+                    backgroundColor: colors.antiBackground,
+                    height:24,
+                    width: 24,
+                   
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  digitTxtStyle = {{
+                    color: colors.antiHitam,
+                    fontFamily: 'Montserrat-Bold',
+                    fontWeight: 'normal'
+                  }}
+                  
+                  timeToShow={['M', 'S']}
+                  timeLabels={{m: null, s: null}}
+                  running = {isTimerRunningBelajar}
+                  showSeparator
+                />
+                    <TouchableOpacity style = {[styles.buttonInside,{
+                      backgroundColor: isTimerRunningBelajar? 'white':colors.mainAccent,
+                      borderWidth: isTimerRunningBelajar? 1:0,
+                      borderColor: isTimerRunningBelajar? colors.mainAccent: 'white'
+                    }]} onPress = {()=> {
+                      setTimerRunningBelajar(true),
+                      setPressedChangeTextBelajar('Pause')
+                      
+                    }}>
+                        <Text style = {[styles.textButtonInside, {
+                          color: isTimerRunningBelajar? colors.mainAccent:'white',
+                        }]}>{isPressedChangeTextBelajar}</Text>
                     </TouchableOpacity>
                 </View>
                 {/*countdown istirahat*/}
                 <View style = {[styles.countdownWrapper, {
                     marginBottom: 24,
                 }]}>
-                    <Text style = {styles.textUtamaDalam} >
-                        05:00
-                    </Text>
-                    <TouchableOpacity style = {styles.buttonInside}>
-                        <Text style = {styles.textButtonInside}>Mulai</Text>
+                    <CountDown
+                    id = {countIDIstirahat}
+                  size={15}
+                  until={isCountUntillIstirahat}
+                  onFinish={() => (alert('Finished'), setCountIDIstirahat('nbvfsf'))}
+                  digitStyle = {{
+                    backgroundColor: colors.antiBackground,
+                    height:24,
+                    width: 24,
+                   
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  digitTxtStyle = {{
+                    color: colors.antiHitam,
+                    fontFamily: 'Montserrat-Bold',
+                    fontWeight: 'normal'
+                  }}
+                  
+                  timeToShow={['M', 'S']}
+                  timeLabels={{m: null, s: null}}
+                  running = {isTimerRunningIstirahat}
+                  showSeparator
+                />
+                    <TouchableOpacity style = {[styles.buttonInside,{
+                      backgroundColor: isTimerRunningIstirahat? 'white':colors.mainAccent,
+                      borderWidth: isTimerRunningIstirahat? 1:0,
+                      borderColor: isTimerRunningIstirahat? colors.mainAccent: 'white'
+                    }]} onPress = {()=> {
+                      setTimerRunningIstirahat(true),
+                      setPressedChangeTextIstirahat('Pause')
+                      
+                    }}>
+                        <Text style = {[styles.textButtonInside, {
+                          color: isTimerRunningIstirahat? colors.mainAccent:'white',
+                        }]}>{isPressedChangeTextIstirahat}</Text>
                     </TouchableOpacity>
-                    
                 </View>
             </View>
 
