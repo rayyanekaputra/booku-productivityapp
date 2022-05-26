@@ -14,7 +14,7 @@ export default function Notes({navigation}){
     const [countIDBelajar, setCountIDBelajar] = useState('z');
     const [isTimerRunningBelajar, setTimerRunningBelajar]= useState(false);
     const [isPressedChangeTextBelajar, setPressedChangeTextBelajar] = useState('Mulai');
-    const [isCountUntillBelajar, setCountUntillBelajar] = useState(2);
+    const [isCountUntillBelajar, setCountUntillBelajar] = useState(10);
 
     const [countIDIstirahat, setCountIDIstirahat] = useState('a');
     const [isTimerRunningIstirahat, setTimerRunningIstirahat]= useState(false);
