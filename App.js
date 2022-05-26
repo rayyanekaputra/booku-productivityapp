@@ -8,12 +8,19 @@ import * as SplashScreen from 'expo-splash-screen';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import * as Font from 'expo-font';
 import { getStatusBarHeight} from 'react-native-status-bar-height';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //root dari semua fungsi, tempatnya dipanggil dll
 export default function App() {
+  
+  const findCatatan = async() => {
+    const isiCatatanDiOper = await AsyncStorage.getItem('isiCatatan')
+    console.log(isiCatatanDiOper)
+  }
 
   const [appIsReady, setAppIsReady] = useState(false);
   useEffect(() => {
+    findCatatan();
     async function prepare() {
       try {
         // Keep the splash screen visible while we fetch resources
@@ -26,6 +33,7 @@ export default function App() {
           'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
           'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
         });
+        
       } catch (e) {
         console.warn(e);
       } finally {

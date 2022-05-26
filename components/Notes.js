@@ -21,6 +21,7 @@ export default function Notes({navigation}){
     const [isPressedChangeTextIstirahat, setPressedChangeTextIstirahat] = useState('Mulai');
     const [isCountUntillIstirahat, setCountUntillIstirahat] = useState(2);
 
+  
 
   
     
