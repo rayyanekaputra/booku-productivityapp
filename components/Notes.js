@@ -17,8 +17,8 @@ export default function Notes({navigation}){
 
     const [countIDIstirahat, setCountIDIstirahat] = useState('a');
     const [isTimerRunningIstirahat, setTimerRunningIstirahat]= useState(false);
-    const [isPressedChangeTextIstirahat, setPressedChangeTextIstirahat] = useState('Mulai');
-    const [isCountUntillIstirahat, setCountUntillIstirahat] = useState(2);
+    //const [isPressedChangeTextIstirahat, setPressedChangeTextIstirahat] = useState('Mulai');
+    //const [isCountUntillIstirahat, setCountUntillIstirahat] = useState(2);
    
   
     //panggil fungsi useFonts untuk pake fonts custom dari expofonts
