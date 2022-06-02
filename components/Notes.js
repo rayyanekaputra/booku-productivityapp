@@ -5,9 +5,13 @@ import { useFonts } from 'expo-font';
 import { AntDesign } from '@expo/vector-icons';
 import notesKamu from '../assets/data/notesKamuData';
 import CountDown from 'react-native-countdown-component';
+import Editor from '../components/Notes/Editor'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import notesKamuData from '../assets/data/notesKamuData'
 
 AntDesign.loadFont();
-export default function Notes({navigation}){
+
+const Notes = ({navigation}) => {
   
     //ini state2 yang terganti pada saat menggunakan timer
 
@@ -20,13 +24,20 @@ export default function Notes({navigation}){
     const [isTimerRunningIstirahat, setTimerRunningIstirahat]= useState(false);
     const [isPressedChangeTextIstirahat, setPressedChangeTextIstirahat] = useState('Mulai');
     const [isCountUntillIstirahat, setCountUntillIstirahat] = useState(2);
-
-  
-
-  
-    
    
-  
+    const [isiNotes, setIsiNotes] = useState(notesKamuData)
+    const findIsiNotes = async() => {
+      const isiNotesDiOper = await AsyncStorage.getItem('isiNotes')
+      setIsiNotes(JSON.parse(isiNotesDiOper))
+      console.log(isiNotes)
+
+    }
+
+
+    useEffect(()=>{
+      findIsiNotes()
+    },[])
+    
     //panggil fungsi useFonts untuk pake fonts custom dari expofonts
     const [loaded] = useFonts({
         'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
@@ -45,6 +56,8 @@ export default function Notes({navigation}){
                 <Text style = {styles.textUtama}>Notes</Text>
                 <TouchableOpacity onPress ={()=>{
           navigation.navigate('Editor')
+          
+
         }}>
                 <AntDesign name="plus" size={24} color= {colors.antiHitam} />
                 </TouchableOpacity>
@@ -229,6 +242,7 @@ export default function Notes({navigation}){
             </View> 
           </View> 
         ))}
+        <Editor onSubmit={(notes) => console.log(notes)}/>
       </View>
 
          </ScrollView>
@@ -338,3 +352,5 @@ const styles = StyleSheet.create({
       },
 
 });
+
+export default Notes;

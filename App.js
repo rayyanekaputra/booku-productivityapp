@@ -13,14 +13,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //root dari semua fungsi, tempatnya dipanggil dll
 export default function App() {
   
-  const findCatatan = async() => {
-    const isiCatatanDiOper = await AsyncStorage.getItem('isiCatatan')
-    console.log(isiCatatanDiOper)
-  }
+ 
 
   const [appIsReady, setAppIsReady] = useState(false);
   useEffect(() => {
-    findCatatan();
     async function prepare() {
       try {
         // Keep the splash screen visible while we fetch resources

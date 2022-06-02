@@ -8,13 +8,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 AntDesign.loadFont();
 export default function Editor({route}){
 
-    const [catatan, setCatatan] = useState('');
-    const handleOnChangeText = text => {setCatatan(text)};
-    const handleSimpan = async() => {
-        const isiCatatan = {catatan: catatan}
-        await AsyncStorage.setItem('isiCatatan', JSON.stringify(isiCatatan))
+    const [notes, setNotes] = useState('');
+
+    //ini merecord perubahan yang di textfield
+    const handleOnChangeText = text => {setNotes(text)};
+
+    // ini untuk menyimpan isi ntoes
+    const handleSimpanNotes = async () =>{
+        const isiNotes = {notes: notes}
+        await AsyncStorage.setItem('isiNotes', JSON.stringify(isiNotes))
     }
-    console.log(catatan)
+
+    // const handleSimpanNotes = () =>{
+        
+    // }
+    
     //panggil fungsi useFonts untuk pake fonts custom dari expofonts
     const [loaded] = useFonts({
         'Montserrat-Bold': require('../../assets/fonts/Montserrat-Bold.ttf'),
@@ -43,12 +51,12 @@ export default function Editor({route}){
 
             }}
             
-            value = {catatan}
-            onChangeText = {handleOnChangeText}
+            value = {notes}
+            onChangeText = {(text)=> handleOnChangeText(text)}
             placeholder = {'mulailah mencatat'}
             />
 
-            {catatan.trim().length >= 1 ? ( <TouchableOpacity style = {{
+            {notes.trim().length >= 1 ? ( <TouchableOpacity style = {{
                 backgroundColor: colors.mainAccent,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -56,7 +64,7 @@ export default function Editor({route}){
                 paddingVertical: 12,
                 borderRadius: 32,
 
-            }} onPress={handleSimpan}>
+            }} onPress={handleSimpanNotes}>
                 <Text style = {{
                     fontFamily: 'Montserrat-Bold',
                     color: 'white',
